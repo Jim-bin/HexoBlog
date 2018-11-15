@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>python爬虫下载百度贴吧图片 | 博而不专</title>
+    <title>Hello | 博而不专</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yabing Zhang">
     
 
     
-    <meta name="description" content="利用python的requests模块下载百度贴吧图片">
+    <meta name="description" content="Hello, I am Jim-bin. Welcome to my blog.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python爬虫下载百度贴吧图片">
-<meta property="og:url" content="https://jim-bin.github.io/2017/03/04/python爬虫下载百度贴吧图片/index.html">
+<meta property="og:title" content="Hello">
+<meta property="og:url" content="https://jim-bin.github.io/2018/11/16/Hello/index.html">
 <meta property="og:site_name" content="博而不专">
-<meta property="og:description" content="利用python的requests模块下载百度贴吧图片">
-<meta property="og:updated_time" content="2017-03-04T10:37:57.124Z">
+<meta property="og:description" content="Hello, I am Jim-bin. Welcome to my blog.">
+<meta property="og:updated_time" content="2018-11-15T16:11:00.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python爬虫下载百度贴吧图片">
-<meta name="twitter:description" content="利用python的requests模块下载百度贴吧图片">
+<meta name="twitter:title" content="Hello">
+<meta name="twitter:description" content="Hello, I am Jim-bin. Welcome to my blog.">
 
     
     <link rel="alternative" href="atom.xml" title="博而不专" type="application/atom+xml">
@@ -82,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/04/python爬虫下载百度贴吧图片/" title="python爬虫下载百度贴吧图片" itemprop="url">python爬虫下载百度贴吧图片</a>
+      <a href="/2018/11/16/Hello/" title="Hello" itemprop="url">Hello</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yabing Zhang" target="_blank" itemprop="author">Yabing Zhang</a>
 		
   <p class="article-time">
-    <time datetime="2017-03-04T10:32:13.000Z" itemprop="datePublished"> 发表于 2017-03-04</time>
+    <time datetime="2018-11-15T16:10:05.000Z" itemprop="datePublished"> 发表于 2018-11-16</time>
     
   </p>
 </header>
@@ -102,17 +102,12 @@
 		
 		</div>
 		
-		<p>利用python的requests模块下载百度贴吧图片<br><a id="more"></a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line">url = <span class="string">'http://tieba.baidu.com/p/4468445702'</span></div><div class="line">html = requests.get(url)</div><div class="line">html.encoding = <span class="string">'utf-8'</span></div><div class="line">text = html.text</div><div class="line"></div><div class="line">bsop = BeautifulSoup(text,<span class="string">'html.parser'</span>)</div><div class="line">img_list = bsop.find(<span class="string">'div'</span>,&#123;<span class="string">'id'</span>:<span class="string">'post_content_87286618651'</span>&#125;).findAll(<span class="string">'img'</span>)</div><div class="line">img_src = img_list[<span class="number">0</span>].attrs[<span class="string">'src'</span>]</div><div class="line"></div><div class="line">print(img_src)</div><div class="line">img = requests.get(img_src)</div><div class="line"><span class="keyword">with</span> open(<span class="string">'1.jpg'</span>, <span class="string">'ab'</span>) <span class="keyword">as</span> f:</div><div class="line">    f.write(img.content)</div><div class="line">    f.close()</div></pre></td></tr></table></figure>  
+		<p>Hello, I am Jim-bin. Welcome to my blog.</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/python/">python</a>
-  </div>
 
 </div>
 
@@ -125,17 +120,10 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/03/04/python爬虫爬取58同城租房信息/" title="python爬虫爬取58同城租房信息">
-  <span>
-  python爬虫爬取58同城租房信息</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/02/28/python爬取妹子图全部图片/"  title="python爬取妹子图全部图片">
- <span>python爬取妹子图全部图片
+<a href="/2018/07/13/机器学习1-监督学习和非监督学习/"  title="机器学习1-监督学习和非监督学习">
+ <span>机器学习1-监督学习和非监督学习
 </span>
 </a>
 </div>
