@@ -1,0 +1,444 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>python爬取妹子图全部图片 | 博而不专</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yabing Zhang">
+    
+
+    
+    <meta name="description" content="摘要: 利用python, requests, BeautifulSoup爬取妹子图所有图片">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬取妹子图全部图片">
+<meta property="og:url" content="https://jim-bin.github.io/2017/02/28/python爬取妹子图全部图片/index.html">
+<meta property="og:site_name" content="博而不专">
+<meta property="og:description" content="摘要: 利用python, requests, BeautifulSoup爬取妹子图所有图片">
+<meta property="og:updated_time" content="2017-03-05T13:35:22.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬取妹子图全部图片">
+<meta name="twitter:description" content="摘要: 利用python, requests, BeautifulSoup爬取妹子图所有图片">
+
+    
+    <link rel="alternative" href="atom.xml" title="博而不专" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/unnamed4_n_mSY_icon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/profile.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/profile.png">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="博而不专" title="博而不专"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="博而不专">博而不专</a></h1>
+				<h2 class="blog-motto">每天进步一点点</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:jim-bin.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/02/28/python爬取妹子图全部图片/" title="python爬取妹子图全部图片" itemprop="url">python爬取妹子图全部图片</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yabing Zhang" target="_blank" itemprop="author">Yabing Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2017-02-28T14:34:33.000Z" itemprop="datePublished"> 发表于 2017-02-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>摘要: 利用python, requests, BeautifulSoup爬取妹子图所有图片<br><a id="more"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="string">'''</span></div><div class="line">python 3.5.2</div><div class="line">'''</div><div class="line"></div><div class="line"><span class="comment"># 导入模块</span></div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> requests, re, random, os</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ip_test</span><span class="params">(ip, url_for_test=<span class="string">'https://www.baidu.com'</span>, set_timeout=<span class="number">10</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    检测爬取到的ip地址可否使用，能使用返回True，否则返回False，默认去访问百度测试代理</div><div class="line">    :param ip:</div><div class="line">    :param url_for_test:</div><div class="line">    :param set_timeout:</div><div class="line">    :return:</div><div class="line">    '''</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        r = requests.get(url_for_test, headers=headers, proxies=&#123;<span class="string">'http'</span>: ip[<span class="number">0</span>]+<span class="string">':'</span>+ip[<span class="number">1</span>]&#125;, timeout=set_timeout)</div><div class="line">        <span class="keyword">if</span> r.status_code == <span class="number">200</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">scrawl_ip</span><span class="params">(url, num, url_for_test=<span class="string">'https://www.baidu.com'</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    爬取代理ip地址，代理的url是西祠代理</div><div class="line">    :param url:</div><div class="line">    :param num:</div><div class="line">    :param url_for_test:</div><div class="line">    :return:</div><div class="line">    '''</div><div class="line">    ip_list = []</div><div class="line">    <span class="keyword">for</span> num_page <span class="keyword">in</span> range(<span class="number">1</span>, num+<span class="number">1</span>):</div><div class="line">        url = url + str(num_page)</div><div class="line"></div><div class="line">        response = requests.get(url, headers=headers)</div><div class="line">        response.encoding = <span class="string">'utf-8'</span></div><div class="line">        content = response.text</div><div class="line"></div><div class="line">        pattern = re.compile(<span class="string">'&lt;td class="country"&gt;.*?alt="Cn" /&gt;.*?&lt;/td&gt;.*?&lt;td&gt;(.*?)&lt;/td&gt;.*?&lt;td&gt;(.*?)&lt;/td&gt;'</span>, re.S)</div><div class="line">        items = re.findall(pattern, content)</div><div class="line">        <span class="keyword">for</span> ip <span class="keyword">in</span> items:</div><div class="line">            <span class="keyword">if</span> ip_test(ip[<span class="number">1</span>], url_for_test):  <span class="comment"># 测试爬取到ip是否可用，测试通过则加入ip_list列表之中</span></div><div class="line">                print(<span class="string">'测试通过，IP地址为'</span> + str(ip[<span class="number">0</span>]) + <span class="string">':'</span> + str(ip[<span class="number">1</span>]))</div><div class="line">                ip_list.append(ip[<span class="number">0</span>]+<span class="string">':'</span>+ip[<span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> ip_list</div><div class="line"></div><div class="line">    time.sleep(<span class="number">5</span>)  <span class="comment"># 等待5秒爬取下一页</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_ip</span><span class="params">()</span>:</span>    <span class="comment"># 随机获取一个IP</span></div><div class="line">    ind = random.randint(<span class="number">0</span>, len(total_ip)<span class="number">-1</span>)</div><div class="line">    <span class="keyword">return</span> total_ip[ind]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_img</span><span class="params">(img_list, img_title)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    通过scrawl_url函数获得了单个图册里面所有图片的url列表和图册的名字，就可以下载图片了</div><div class="line">    此函数的作用下载单个图册里面的所有图片</div><div class="line">    接收参数img_list是单个图册里面所有图片的的url，</div><div class="line">    如['http://mm.howkuai.com/wp-content/uploads/2017a/02/07/01.jpg',</div><div class="line">    'http://mm.howkuai.com/wp-content/uploads/2017a/02/07/02.jpg',...]</div><div class="line">    img_title是单个图册的名字，如’香车美女，最完美的黄金搭档‘</div><div class="line">    :param img_list:</div><div class="line">    :param img_title:</div><div class="line">    :return:</div><div class="line">    '''</div><div class="line"></div><div class="line">    img_title = format_name(img_title) <span class="comment"># 如果图册名字有特殊字符需要处理。不然在windows下保存不了文件夹</span></div><div class="line">    <span class="keyword">for</span> img_urls <span class="keyword">in</span> img_list:</div><div class="line">        img_url = img_urls.attrs[<span class="string">'src'</span>] <span class="comment"># 单个图片的url地址</span></div><div class="line">        print(img_url)</div><div class="line">        title = img_urls.attrs[<span class="string">'alt'</span>] <span class="comment"># 单个图片的名字</span></div><div class="line">        print(title)</div><div class="line"></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(os.path.join(file_path, img_title)):</div><div class="line">                os.makedirs(os.path.join(file_path, img_title))</div><div class="line">            os.chdir(file_path + <span class="string">'\\'</span> + img_title)</div><div class="line"></div><div class="line">            <span class="comment"># 图片保存到本地</span></div><div class="line">            exists = os.path.exists(img_title)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> exists:</div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    img_html = requests.get(img_url, headers=headers, stream=<span class="keyword">True</span>, timeout=<span class="number">20</span>, verify=<span class="keyword">True</span>)</div><div class="line">                    <span class="keyword">with</span> open(title+<span class="string">".jpg"</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">                        f.write(img_html.content)</div><div class="line">                        f.close()</div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    <span class="keyword">continue</span></div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">continue</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">scrawl_list</span><span class="params">(url_list, proxy_flag=False, try_time=<span class="number">0</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    此函数的作用是爬取每一页面所有图册的url，一个页面包含10个图册，所有调用一次函数则返回一个包含10个url的列表</div><div class="line">    格式如['http://www.meizitu.com/a/list_1_1.html',...]</div><div class="line">    :param url_list:</div><div class="line">    :param proxy_flag:</div><div class="line">    :param try_time:</div><div class="line">    :return:</div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> proxy_flag:  <span class="comment"># 不使用代理</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            html = requests.get(url_list, headers=headers,  timeout=<span class="number">10</span>)</div><div class="line">            html.encoding = <span class="string">'gb2312'</span></div><div class="line">            text = html.text</div><div class="line"></div><div class="line">            bsop = BeautifulSoup(text, <span class="string">'html.parser'</span>)</div><div class="line"></div><div class="line">            url_imgs = []</div><div class="line">            li_list = bsop.find(<span class="string">'ul'</span>, &#123;<span class="string">'class'</span>: <span class="string">'wp-list clearfix'</span>&#125;).findAll(<span class="string">'li'</span>, &#123;<span class="string">'class'</span>:<span class="string">'wp-item'</span>&#125;)</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> li_list:</div><div class="line">                url_img = i.find(<span class="string">'h3'</span>,&#123;<span class="string">'class'</span>:<span class="string">'tit'</span>&#125;).find(<span class="string">'a'</span>).attrs[<span class="string">'href'</span>]</div><div class="line">                url_imgs.append(url_img)</div><div class="line">            <span class="keyword">return</span> url_imgs</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">return</span> scrawl_list(url_list, proxy_flag=<span class="keyword">True</span>)  <span class="comment"># 否则调用自己，使用3次IP代理</span></div><div class="line">    <span class="keyword">else</span>:   <span class="comment"># 使用代理时</span></div><div class="line">        <span class="keyword">if</span> try_time&lt;count_time:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                print(<span class="string">'尝试第'</span>+str(try_time+<span class="number">1</span>)+<span class="string">'次使用代理下载'</span>)</div><div class="line">                html = requests.get(url_list, headers=headers, proxies=&#123;<span class="string">'http'</span>: get_random_ip()&#125;, timeout=<span class="number">10</span>)</div><div class="line">                html.encoding = <span class="string">'gb2312'</span></div><div class="line">                text = html.text</div><div class="line"></div><div class="line">                bsop = BeautifulSoup(text, <span class="string">'html.parser'</span>)</div><div class="line"></div><div class="line">                url_imgs = []</div><div class="line">                <span class="comment"># url_titles = []</span></div><div class="line">                li_list = bsop.find(<span class="string">'ul'</span>, &#123;<span class="string">'class'</span>: <span class="string">'wp-list clearfix'</span>&#125;).findAll(<span class="string">'li'</span>, &#123;<span class="string">'class'</span>: <span class="string">'wp-item'</span>&#125;)</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> li_list:</div><div class="line">                    url_img = i.find(<span class="string">'h3'</span>, &#123;<span class="string">'class'</span>: <span class="string">'tit'</span>&#125;).find(<span class="string">'a'</span>).attrs[<span class="string">'href'</span>]</div><div class="line">                    url_imgs.append(url_img)</div><div class="line">                print(<span class="string">'状态码为'</span>+str(html.status_code))</div><div class="line">                <span class="keyword">if</span> html.status_code==<span class="number">200</span>:</div><div class="line">                    print(<span class="string">'url_imgs通过IP代理处理成功！'</span>)</div><div class="line">                    <span class="keyword">return</span> url_imgs  <span class="comment"># 代理成功下载！</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">return</span> scrawl_list(url_list, proxy_flag=<span class="keyword">True</span>, try_time=(try_time + <span class="number">1</span>))</div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                print(<span class="string">'url_imgs代理下载失败，尝试下次代理'</span>)</div><div class="line">                <span class="keyword">return</span> scrawl_list(url_list, proxy_flag=<span class="keyword">True</span>, try_time=(try_time+<span class="number">1</span>))  <span class="comment"># 否则调用自己，使用3次IP代理</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">'url_imgs爬取失败，请检查网页'</span>)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">scrawl_url</span><span class="params">(url, proxy_flag=False, try_time=<span class="number">0</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    此函数的作用是爬取单个图册里面的所有图片的url，一个图册包含几张图片，每个图片有个真实的url地址，需要获取得到</div><div class="line">    此函数接收图册url作为参数，如'http://www.meizitu.com/a/5499.html',返回该图册里面所有图片的url列表和图册的名字</div><div class="line">    所有图片共用一个名字，可作为文件夹名字存储</div><div class="line">    :param url:</div><div class="line">    :param proxy_flag:</div><div class="line">    :param try_time:</div><div class="line">    :return:</div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> proxy_flag:  <span class="comment"># 不使用代理</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            html = requests.get(url, headers=headers,  timeout=<span class="number">10</span>)</div><div class="line">            html.encoding = <span class="string">'gb2312'</span></div><div class="line">            text = html.text</div><div class="line"></div><div class="line">            bsop = BeautifulSoup(text, <span class="string">'html.parser'</span>)</div><div class="line">            img_list = bsop.find(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'postContent'</span>&#125;).find(<span class="string">'p'</span>).findAll(<span class="string">'img'</span>)</div><div class="line">            img_title = bsop.find(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'metaRight'</span>&#125;).find(<span class="string">'h2'</span>).find(<span class="string">'a'</span>).text</div><div class="line"></div><div class="line">            <span class="keyword">return</span> img_list, img_title</div><div class="line"></div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">return</span> scrawl_url(url, proxy_flag=<span class="keyword">True</span>)  <span class="comment"># 否则调用自己，使用3次IP代理</span></div><div class="line">    <span class="keyword">else</span>:   <span class="comment"># 使用代理时</span></div><div class="line">        <span class="keyword">if</span> try_time&lt;count_time:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                print(<span class="string">'尝试第'</span>+str(try_time+<span class="number">1</span>)+<span class="string">'次使用代理下载'</span>)</div><div class="line"></div><div class="line">                html = requests.get(url, headers=headers, proxies=&#123;<span class="string">'http'</span>: get_random_ip()&#125;,timeout=<span class="number">30</span>)</div><div class="line">                html.encoding = <span class="string">'gb2312'</span></div><div class="line"></div><div class="line">                text = html.text</div><div class="line">                bsop = BeautifulSoup(text, <span class="string">'html.parser'</span>)</div><div class="line">                img_list = bsop.find(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'postContent'</span>&#125;).find(<span class="string">'p'</span>).findAll(<span class="string">'img'</span>)</div><div class="line">                img_title = bsop.find(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'metaRight'</span>&#125;).find(<span class="string">'h2'</span>).find(<span class="string">'a'</span>).text</div><div class="line"></div><div class="line">                print(<span class="string">'状态码为'</span>+str(html.status_code))</div><div class="line">                <span class="keyword">if</span> html.status_code==<span class="number">200</span>:</div><div class="line">                    print(<span class="string">'图片通过IP代理处理成功！'</span>)</div><div class="line">                    <span class="keyword">return</span> img_list, img_title  <span class="comment"># 代理成功下载！</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">return</span> scrawl_url(url, proxy_flag=<span class="keyword">True</span>, try_time=(try_time + <span class="number">1</span>))</div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                print(<span class="string">'IP代理下载失败'</span>)</div><div class="line">                <span class="keyword">return</span> scrawl_url(url, proxy_flag=<span class="keyword">True</span>, try_time=(try_time+<span class="number">1</span>))  <span class="comment"># 否则调用自己，使用3次IP代理</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">'图片url列表未能爬取，请检查网页'</span>)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_urls</span><span class="params">(pages)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">     此函数的作用是爬取所有页面的url，最后返回的是包含所有页面url的二位列表，格式如下</div><div class="line">     url_imgss = [</div><div class="line">                  ['http://www.meizitu.com/a/list_1_1.html',...],</div><div class="line">                  ['http://www.meizitu.com/a/list_1_2.html',...],</div><div class="line">                  ...</div><div class="line">                 ]</div><div class="line">    '''</div><div class="line">    url_imgss = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, pages+<span class="number">1</span>):</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            url_list = <span class="string">'http://www.meizitu.com/a/list_1_'</span> + str(i) + <span class="string">'.html'</span></div><div class="line">            url_imgs = scrawl_list(url_list)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> url_imgs:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            url_imgss.append(url_imgs)</div><div class="line">            print(<span class="string">"第"</span>+str(i)+<span class="string">"页url爬取成功"</span>)</div><div class="line">            time.sleep(<span class="number">5</span>)   <span class="comment">#休息5秒篇爬取下一页</span></div><div class="line">        <span class="keyword">except</span>: <span class="comment"># 如果其中某一页出错，则跳过该页，继续爬取下一页，从而不使程序中断</span></div><div class="line">            <span class="keyword">continue</span></div><div class="line">    <span class="keyword">return</span> url_imgss</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">format_name</span><span class="params">(img_title)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    对名字进行处理，如果包含下属字符，则直接剔除该字符</div><div class="line">    :param img_title:</div><div class="line">    :return:</div><div class="line">    '''</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">'\\'</span>,<span class="string">'/'</span>,<span class="string">':'</span>,<span class="string">'*'</span>,<span class="string">'?'</span>,<span class="string">'"'</span>,<span class="string">'&lt;'</span>,<span class="string">'&gt;'</span>,<span class="string">'!'</span>,<span class="string">'|'</span>]:</div><div class="line">        <span class="keyword">while</span> i <span class="keyword">in</span> img_title:</div><div class="line">            img_title = img_title.strip().replace(i, <span class="string">''</span>)</div><div class="line">    <span class="keyword">return</span> img_title</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_total_pages</span><span class="params">(first_url)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    获取妹子图所有页面</div><div class="line">    :param first_url:</div><div class="line">    :return:</div><div class="line">    '''</div><div class="line">    html = requests.get(first_url, headers=headers, timeout=<span class="number">10</span>)</div><div class="line">    html.encoding = <span class="string">'gb2312'</span></div><div class="line">    text = html.text</div><div class="line">    bsop = BeautifulSoup(text, <span class="string">'html.parser'</span>)</div><div class="line">    lis =bsop.find(<span class="string">'div'</span>,&#123;<span class="string">'id'</span>:<span class="string">'wp_page_numbers'</span>&#125;).find(<span class="string">'ul'</span>).findAll(<span class="string">'li'</span>)</div><div class="line">    pages = lis[<span class="number">-1</span>].find(<span class="string">'a'</span>).attrs[<span class="string">'href'</span>].split(<span class="string">'.'</span>)[<span class="number">0</span>].split(<span class="string">'_'</span>)[<span class="number">-1</span>]</div><div class="line">    pages = int(pages)</div><div class="line">    <span class="keyword">return</span> pages</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 妹子图的首页，用来获取总的页数</span></div><div class="line">first_url = <span class="string">'http://www.meizitu.com/a/list_1_1.html'</span></div><div class="line"></div><div class="line"><span class="comment"># 爬取代理的url地址，选择的是西祠代理</span></div><div class="line">url_ip = <span class="string">"http://www.xicidaili.com/nt/"</span></div><div class="line"></div><div class="line"><span class="comment"># 设定等待时间</span></div><div class="line">set_timeout = <span class="number">10</span></div><div class="line"></div><div class="line"><span class="comment"># 爬取代理的页数，2表示爬取2页的ip地址</span></div><div class="line">num = <span class="number">2</span></div><div class="line"></div><div class="line"><span class="comment"># 代理的使用次数</span></div><div class="line">count_time = <span class="number">5</span></div><div class="line"></div><div class="line"><span class="comment"># 构造headers</span></div><div class="line">UserAgent_List = [</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"</span>,</div><div class="line">    <span class="string">"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"</span></div><div class="line">]</div><div class="line">headers = &#123;<span class="string">'User-Agent'</span>: random.choice(UserAgent_List),</div><div class="line">           <span class="string">'Accept'</span>: <span class="string">"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"</span>,</div><div class="line">           <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip'</span>,</div><div class="line">           &#125;</div><div class="line"></div><div class="line"><span class="comment"># 图片存储路径</span></div><div class="line">file_path = <span class="string">'E:\selfprogress\programming\project\meizitu'</span></div><div class="line"></div><div class="line"><span class="comment"># 获取总页数</span></div><div class="line">pages = get_total_pages(first_url)</div><div class="line"></div><div class="line"><span class="comment"># 爬取IP代理</span></div><div class="line">total_ip = scrawl_ip(url_ip, num)</div><div class="line"></div><div class="line"><span class="comment"># 带爬取的url</span></div><div class="line">url_imgss = download_urls(pages)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> url_imgss:</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> i:</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">with</span> open(<span class="string">'url.txt'</span>,<span class="string">'a'</span>) <span class="keyword">as</span> f:</div><div class="line">                f.write(j+<span class="string">"\n"</span>)</div><div class="line">                f.close()</div><div class="line">                print(<span class="string">"写入url.txt文件成功"</span>)</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            print(<span class="string">"写入url.txt文件失败"</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> url_imgs <span class="keyword">in</span> url_imgss:</div><div class="line">    <span class="keyword">for</span> url_img <span class="keyword">in</span> url_imgs:</div><div class="line">        img_list, img_title = scrawl_url(url_img)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> img_list:</div><div class="line">            <span class="keyword">continue</span></div><div class="line">        download_img(img_list, img_title)</div><div class="line"></div><div class="line">        time.sleep(<span class="number">5</span>)</div></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/04/python爬虫下载百度贴吧图片/" title="python爬虫下载百度贴吧图片">
+  <span>
+  python爬虫下载百度贴吧图片</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/02/27/python/"  title="python">
+ <span>python
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-img"></div>		
+	
+	<div class="social-info" class="clearfix">
+		
+		
+		<a href="https://github.com/jim-bin" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:fendushu@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+
+	</div>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/日志/二级目录/" title="二级目录">二级目录<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/日志/" title="日志">日志<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dsfdsfdsfdsfdssddfdsfd/" title="dsfdsfdsfdsfdssddfdsfd">dsfdsfdsfdsfdssddfdsfd<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hello/" title="hello">hello<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+		
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/hsihohuang/kiddochan" target="_blank" title="Kiddochan">Kiddochan</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yabing Zhang">Yabing Zhang</a>
+		
+		
+		本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+		
+		</p>
+</div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?null";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
+
+
+<a href="https://github.com/jim-bin"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
