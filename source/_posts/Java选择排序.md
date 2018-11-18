@@ -9,7 +9,6 @@ Java选择排序
 
 ```java
 /**
-冒泡排序
 1. 从第一个数开始，跟后面所有的数挨个比较
 2. 只要大，则交换位置
 3. 每比较一次，则把小的数放在最前面
@@ -51,7 +50,7 @@ public class SelectionSort{
 		printArray(a);
 	}
 
-	// 接收一个数组，冒泡排序之后返回排好序的数组
+	// 接收一个数组，选择排序之后返回排好序的数组
 	public static int[] selectionSort(int[] array){
 		int l = array.length;
 		for (int i=0; i<l-1; i++) {
