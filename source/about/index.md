@@ -10,11 +10,3 @@ date: 2017-03-04 19:15:06
 <a href="https://github.com/Jim-bin" target="_blank">Github</a> <br />
 <a href="https://www.zhihu.com/people/bin-jim-26/activities" target="_blank">知乎</a><br />
 <a href="https://fendushu.herokuapp.com/" target="_blank">个人动态博客</a>
-
-![image](http://omahxqu4k.bkt.clouddn.com/git%E5%91%BD%E4%BB%A4.png)
-
-<center>
-欢迎您捐赠本站，您的支持是我最大的动力！
-![image](http://omahxqu4k.bkt.clouddn.com/%E6%94%AF%E4%BB%98%E5%AE%9D2.png)
-</center>
-<br/>
