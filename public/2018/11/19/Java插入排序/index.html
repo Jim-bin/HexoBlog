@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Java选择排序 | 博而不专</title>
+    <title>Java插入排序 | 博而不专</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yabing Zhang">
     
 
     
-    <meta name="description" content="Java选择排序">
+    <meta name="description" content="Java插入排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java选择排序">
-<meta property="og:url" content="https://jim-bin.github.io/2018/11/16/Java选择排序/index.html">
+<meta property="og:title" content="Java插入排序">
+<meta property="og:url" content="https://jim-bin.github.io/2018/11/19/Java插入排序/index.html">
 <meta property="og:site_name" content="博而不专">
-<meta property="og:description" content="Java选择排序">
-<meta property="og:updated_time" content="2018-11-18T10:27:25.960Z">
+<meta property="og:description" content="Java插入排序">
+<meta property="og:updated_time" content="2018-11-19T14:40:40.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java选择排序">
-<meta name="twitter:description" content="Java选择排序">
+<meta name="twitter:title" content="Java插入排序">
+<meta name="twitter:description" content="Java插入排序">
 
     
     <link rel="alternative" href="atom.xml" title="博而不专" type="application/atom+xml">
@@ -82,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/11/16/Java选择排序/" title="Java选择排序" itemprop="url">Java选择排序</a>
+      <a href="/2018/11/19/Java插入排序/" title="Java插入排序" itemprop="url">Java插入排序</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yabing Zhang" target="_blank" itemprop="author">Yabing Zhang</a>
 		
   <p class="article-time">
-    <time datetime="2018-11-16T08:34:14.000Z" itemprop="datePublished"> 发表于 2018-11-16</time>
+    <time datetime="2018-11-19T14:39:29.000Z" itemprop="datePublished"> 发表于 2018-11-19</time>
     
   </p>
 </header>
@@ -102,8 +102,8 @@
 		
 		</div>
 		
-		<p>Java选择排序<br><a id="more"></a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">1. 从第一个数开始，跟后面所有的数挨个比较</div><div class="line">2. 只要大，则交换位置</div><div class="line">3. 每比较一次，则把小的数放在最前面</div><div class="line">4. 第一次外循环之后，最小的数放在了最前面</div><div class="line">5. 外循环，需要比较的趟数，共需要l-1趟，从第0号元素开始，</div><div class="line">   最后一个开始比较的数是a[l-2]，只需比较一次，与a[l-1]</div><div class="line">6. 内循环，每趟的数与它后面的数比较，如果大则交换位置，则较小的数放在了前面开始与下面一个比较；</div><div class="line">   如果小则继续与下一个数比较，直至最后</div><div class="line">   第一趟找出了最小的值，第二趟找出次小值</div><div class="line"></div><div class="line">   例子：</div><div class="line">   int[] a = &#123;2,5,9,1,6,4&#125; a.length = 6</div><div class="line">    第一趟排序：</div><div class="line">			第一次排序：a[0]与a[1]，2和5比较，2&lt;5，不变，a=&#123;2 5 9 1 6 4&#125;</div><div class="line">			第二次排序：a[0]与a[2]，2和9比较，2&lt;9，不变，a=&#123;2 5 9 1 6 4&#125;</div><div class="line">			第三次排序：a[0]与a[3]，2和1比较，2&gt;1，变了，a=&#123;1 5 9 2 6 4&#125;</div><div class="line">			第四次排序：a[0]与a[4]，2和5比较，1&lt;6，不变，a=&#123;1 5 9 2 6 4&#125;</div><div class="line">			第五次排序：a[0]与a[5]，2和9比较，1&lt;4，不变，a=&#123;1 5 9 2 6 4&#125;</div><div class="line">	第二趟排序：</div><div class="line">			第一次排序：a[1]与a[2]，5和9比较，5&lt;9，不变，a=&#123;1 5 9 2 6 4&#125;</div><div class="line">			第二次排序：a[1]与a[3]，5和2比较，5&gt;2，变了，a=&#123;1 2 9 5 6 4&#125;</div><div class="line">			第三次排序：a[1]与a[4]，2和6比较，2&lt;6，不变，a=&#123;1 2 9 5 6 4&#125;</div><div class="line">			第四次排序：a[1]与a[5]，2和4比较，2&lt;4，不变，a=&#123;1 2 9 5 6 4&#125;</div><div class="line">	第三趟排序：</div><div class="line">			第一次排序：a[2]与a[3]，9和5比较，9&gt;5，变了，a=&#123;1 2 5 9 6 4&#125;</div><div class="line">			第二次排序：a[2]与a[4]，5和6比较，5&lt;6，不变，a=&#123;1 2 5 9 6 4&#125;</div><div class="line">			第三次排序：a[2]与a[5]，5和4比较，5&gt;4，变了，a=&#123;1 2 4 9 6 5&#125;</div><div class="line">	第四趟排序：</div><div class="line">			第一次排序：a[3]与a[4]，9和6比较，9&gt;6，变了，a=&#123;1 2 4 6 9 5&#125;</div><div class="line">			第二次排序：a[3]与a[5]，6和4比较，6&gt;5，变了，a=&#123;1 2 4 5 9 6&#125;</div><div class="line">	第五趟排序：</div><div class="line">			第一次排序：a[4]与a[5]，9和6比较，9&gt;6，变了，a=&#123;1 2 4 5 6 9&#125;</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SelectionSort</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span>[] a = &#123;<span class="number">10</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">54</span>,<span class="number">43</span>,<span class="number">6</span>,<span class="number">13</span>,<span class="number">24</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">3</span>&#125;;</div><div class="line">		selectionSort(a);</div><div class="line">		printArray(a);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 接收一个数组，选择排序之后返回排好序的数组</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] selectionSort(<span class="keyword">int</span>[] array)&#123;</div><div class="line">		<span class="keyword">int</span> l = array.length;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;l-<span class="number">1</span>; i++) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;l; j++) &#123;</div><div class="line">				<span class="keyword">if</span> (array[i]&gt;array[j]) &#123;</div><div class="line">					<span class="keyword">int</span> m=array[i];</div><div class="line">					array[i]=array[j];</div><div class="line">					array[j]=m;									</div><div class="line">				&#125;				</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> array;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 打印数组元素，中间以空格相隔</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;array.length; i++)&#123;</div><div class="line">			System.out.print(array[i] + <span class="string">" "</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>  
+		<p>Java插入排序<br><a id="more"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">插入排序</div><div class="line">1. 默认第一个排好序；</div><div class="line">2. 从第二个数开始，从后往前插空；</div><div class="line">3. 外循环控制趟数，从第二个数开始，即array[1]，一直到最后一个数，即array[len-1]</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertSort</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span>[] array = &#123;<span class="number">8</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">3</span>&#125;;</div><div class="line">        </div><div class="line">        insertSort(array);</div><div class="line">        printArray(array);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] insertSort(<span class="keyword">int</span>[] array)&#123;</div><div class="line">        <span class="keyword">int</span> len = array.length;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;len; i++)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&gt;<span class="number">0</span> &amp;&amp; array[j]&lt;array[j-<span class="number">1</span>]; j--)&#123;</div><div class="line">                <span class="keyword">int</span> m=array[j];</div><div class="line">                array[j]=array[j-<span class="number">1</span>];</div><div class="line">                array[j-<span class="number">1</span>]=m;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> array;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;array.length; i++)&#123;</div><div class="line">            System.out.print(array[i] + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -125,17 +125,10 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/11/18/Java冒泡排序/" title="Java冒泡排序">
-  <span>
-  Java冒泡排序</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/11/16/Hello/"  title="Hello">
- <span>Hello
+<a href="/2018/11/18/Java冒泡排序/"  title="Java冒泡排序">
+ <span>Java冒泡排序
 </span>
 </a>
 </div>
